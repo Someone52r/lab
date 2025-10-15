@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <math.h>
-int main(float U, float res) {
+  int main(float U, float res) {
     res = 0;
     for (float x=1; x<=2; x=x+0.3) {
         for (float y=2; y<=2.5; y=y+0.5) {
