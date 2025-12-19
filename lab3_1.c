@@ -101,6 +101,5 @@ int main(int argc, char **argv) {
     for (int i = 0; i < N; i++) free(matrix[i]);
     free(matrix);
     free(min_col);
-
     return 0;
 }
