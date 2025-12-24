@@ -2,11 +2,23 @@
 
 #define DATABASE "museum.dat"
 
+int inputInt(int* out) {
+    char buffer[64];
+    char* endptr;
+
+    if (!fgets(buffer, sizeof(buffer), stdin))
+        return 0;
+
+    *out = (int)strtol(buffer, &endptr, 10);
+    if (endptr == buffer || *endptr != '\n')
+        return 0;
+
+    return 1;
+}
+
 int main() {
     ItemList list;
     initList(&list);
-
-    // Загружаем данные из файла при запуске
     if (loadFromFile(&list, DATABASE) != 0) {
         fprintf(stderr, "data error\n");
         freeList(&list);
@@ -24,7 +36,10 @@ int main() {
         printf("6. Save & exit\n");
         printf("Choose 1-6: ");
         
-        scanf("%d", &choice);
+        if (!inputInt(&choice)) {
+    printf("Incorrect input. Enter number 1-6.\n");
+    continue;
+        }
 
         switch (choice) {
             case 1:
